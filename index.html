@@ -41,7 +41,7 @@
                 <button ng-click="addSome()" id="add-some" class="adding">Add Some</button>
                 <button ng-click="removeLast()" id="remove-last" class="removing">Remove Last</button>
                 <button ng-click="removeAll()" id="clear-all" class="removing">Clear All</button>
-                <button ng-click="error()" id="fake-error">Fake Error</button>
+                <button ng-click="error('AHHHHH!!!!!')" id="fake-error">Fake Error</button>
                 <img src="spinner.gif" style="display: none;">
             </div>
             <div id="site-summary">
@@ -89,7 +89,7 @@
                     </li>
                 </ul>
             </div>
-            <div id="site-details" style="display: none;">
+            <div id="site-details" ng-show="currentSite">
                 <h2>Site Details</h2>
                 <table>
                     <tr>
@@ -105,6 +105,7 @@
                             Name
                         </td>
                         <td id="site-name">
+                            {{currentSite.name}}
                         </td>
                     </tr>
                     <tr>
@@ -112,6 +113,7 @@
                             URL
                         </td>
                         <td id="site-url">
+                            {{currentSite.url}}
                         </td>
                     </tr>
                     <tr>
@@ -119,12 +121,13 @@
                             Visits
                         </td>
                         <td id="site-visits">
+                            {{currentSite.visits}}
                         </td>
                     </tr>
                 </table>
             </div>
         </div>
-        <div id="error" style="display: none;">
+        <div id="error" ng-show="errorMessage">
             <div>
                 {{errorMessage}}
             </div>

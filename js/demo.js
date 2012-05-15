@@ -3,6 +3,7 @@ function SiteController($scope) {
 	$scope.sites = []
     $scope.longestName = 0;
     $scope.longestUrl = 0;
+	$scope.currentSite = undefined;
 
 	addSite($scope, {
         id: 1000000,
@@ -15,27 +16,16 @@ function SiteController($scope) {
         url: 'http://www.another-site.com'
 	});
 
-    $scope.setSiteDetails = setSiteDetails;
 
+	$scope.setSiteDetails = function (site) { $scope.currentSite = site; }
     $scope.addOne = function () { addOne($scope); }
     $scope.addSome = function () { addSome($scope); }
     $scope.removeLast = function () { removeLast($scope); }
     $scope.removeAll = function () { removeAll($scope); }
+    $scope.error = function (message) { $scope.errorMessage = message; }
+    $scope.hideError = function () { $scope.errorMessage = undefined; }
 
-    $scope.error = function (message) {
-    	$("#error").show();
-    }
-    $scope.hideError = function () {
-    	$("#error").hide();
-    }
 
-}
-
-function setSiteDetails(site) {
-	$("#site-details").show();
-	$("#site-name").text(site.name);
-	$("#site-url").text(site.url);
-	$("#site-visits").text(site.visits);
 }
 
 function addSite($scope, site) {
@@ -97,13 +87,3 @@ function addSome($scope) {
     });
 }
 
-
-
-function ErrorController($scope) {
-	if ($scope.error !== "") {
-		$("#error").show();
-	}
-	else {
-		$("#error").hide();
-	}
-}
