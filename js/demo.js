@@ -1,9 +1,10 @@
 
 function SiteController($scope) {
-	$scope.sites = []
+    $scope.sites = []
     $scope.longestName = 0;
     $scope.longestUrl = 0;
-	$scope.currentSite = undefined;
+    $scope.currentSite = undefined;
+    $scope.errorMessage = undefined;
 
 	addSite($scope, {
         id: 1000000,
@@ -17,71 +18,68 @@ function SiteController($scope) {
 	});
 
 
-	$scope.setSiteDetails = function (site) { $scope.currentSite = site; }
     $scope.addOne = function () { addOne($scope); }
     $scope.addSome = function () { addSome($scope); }
     $scope.removeLast = function () { removeLast($scope); }
     $scope.removeAll = function () { removeAll($scope); }
-    $scope.error = function (message) { $scope.errorMessage = message; }
-    $scope.hideError = function () { $scope.errorMessage = undefined; }
 
 
 }
 
 function addSite($scope, site) {
-	$scope.sites.push(site);
-	$scope.siteCount = $scope.sites.length;
-	$scope.longestName = site.name.length > $scope.longestName ? site.name.length : $scope.longestName;
-	$scope.longestUrl = site.url.length > $scope.longestUrl ? site.url.length : $scope.longestUrl;
+    $scope.sites.push(site);
+    $scope.siteCount = $scope.sites.length;
+    $scope.longestName = site.name.length > $scope.longestName ? site.name.length : $scope.longestName;
+    $scope.longestUrl = site.url.length > $scope.longestUrl ? site.url.length : $scope.longestUrl;
 }
 
 function removeSite($scope, index) {
-	$scope.sites.splice(index,1);
-	$scope.longestName = $scope.longestUrl = 0;
-	for (i in $scope.sites) {
-		var site = $scope.sites[i];
-		$scope.longestName = site.name.length > $scope.longestName ? site.name.length : $scope.longestName;
-		$scope.longestUrl = site.url.length > $scope.longestUrl ? site.url.length : $scope.longestUrl;
-	}
-	$scope.siteCount = $scope.sites.length;
+    $scope.sites.splice(index,1);
+    $scope.longestName = $scope.longestUrl = 0;
+    for (i in $scope.sites) {
+        var site = $scope.sites[i];
+        $scope.longestName = site.name.length > $scope.longestName ? site.name.length : $scope.longestName;
+        $scope.longestUrl = site.url.length > $scope.longestUrl ? site.url.length : $scope.longestUrl;
+    }
+    $scope.siteCount = $scope.sites.length;
 }
 
 function removeLast($scope) {
-	removeSite($scope, $scope.sites.length-1);
+    removeSite($scope, $scope.sites.length-1);
 }
 
 function removeAll($scope) {
-	var count = $scope.sites.length;
-	for (var i = 0; i < count; i++) {
-		removeLast($scope);
-	}
+    var count = $scope.sites.length;
+    for (var i = 0; i < count; i++) {
+        removeLast($scope);
+    }
 }
 
 function addOne($scope) {
-	addSite($scope, {
+    addSite($scope, {
         name: 'Name', 
         url: 'http://www.name.com'
     });
 }
 
 function addSome($scope) {
-	addSite($scope, {
+    addSite($scope, {
         name: 'Some 1', 
         url: 'http://www.some-one.com'
     });
-	addSite($scope, {
+    addSite($scope, {
         name: 'Some 2', 
         url: 'http://www.some-two.com'
     });
-	addSite($scope, {
+    addSite($scope, {
         name: 'Some 3', 
         url: 'http://www.some-three.com'
     });
-	addSite($scope, {
+    addSite($scope, {
         name: 'Some 4', 
         url: 'http://www.some-four.com'
     });
-	addSite($scope, {
+    addSite($scope, {
         name: 'Some 5', 
         url: 'http://www.some-five.com'
     });

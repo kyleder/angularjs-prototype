@@ -41,7 +41,7 @@
                 <button ng-click="addSome()" id="add-some" class="adding">Add Some</button>
                 <button ng-click="removeLast()" id="remove-last" class="removing">Remove Last</button>
                 <button ng-click="removeAll()" id="clear-all" class="removing">Clear All</button>
-                <button ng-click="error('AHHHHH!!!!!')" id="fake-error">Fake Error</button>
+                <button ng-click="errorMessage='AHHHHH!!!!!'" id="fake-error">Fake Error</button>
                 <img src="spinner.gif" style="display: none;">
             </div>
             <div id="site-summary">
@@ -85,7 +85,7 @@
                 <h2>Site List</h2>
                 <ul>
                     <li ng-repeat="site in sites">
-                        <a href="#" ng-click="setSiteDetails(site)">{{site.name}}</a>
+                        <a href="#" ng-click="currentSite=site">{{site.name}}</a>
                     </li>
                 </ul>
             </div>
@@ -127,11 +127,11 @@
                 </table>
             </div>
         </div>
-        <div id="error" ng-show="errorMessage">
+        <div id="error" ng-cloak ng-show="errorMessage">
             <div>
                 {{errorMessage}}
             </div>
-            <button ng-click="hideError()">OK</button>
+            <button ng-click="errorMessage=undefined">OK</button>
         </div>
         <script src="js/lib/jquery.js"></script>
         <script src="js/lib/angular.js"></script>
