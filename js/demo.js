@@ -1,23 +1,25 @@
 
 function SiteController($scope) {
+    // Model initialization
     $scope.sites = []
     $scope.longestName = 0;
     $scope.longestUrl = 0;
     $scope.currentSite = undefined;
     $scope.errorMessage = undefined;
 
-	addSite($scope, {
+    // Data initialization
+    addSite($scope, {
         id: 1000000,
         name: 'Some Site',
         url: 'http://www.some-site.com'
-	});
-	addSite($scope, {
+    });
+    addSite($scope, {
         id: 1000001,
         name: 'Another Site',
         url: 'http://www.another-site.com'
-	});
+    });
 
-
+    // Action initialization
     $scope.addOne = function () { addOne($scope); }
     $scope.addSome = function () { addSome($scope); }
     $scope.removeLast = function () { removeLast($scope); }
